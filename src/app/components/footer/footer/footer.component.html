@@ -1,0 +1,23 @@
+<div *ngIf="iTunesService.songSelected ;else enjoySong" class="player">
+  <div
+    class="imgPlayer" [ngStyle]="{'background-image': 'url(' + iTunesService.songSelected.artworkUrl100 + ')',
+       'background-size': 'cover'  }"
+  ></div>
+    <mat-basic-audio-player class="audioPlayer"
+                            [audioUrl]="iTunesService.songSelected.previewUrl"
+                            [autoPlay]="false"
+                            muted="muted"
+                            [displayTitle]="false"
+                            [displayVolumeControls]="true" >
+
+    </mat-basic-audio-player>
+  <div class="selectedInfo">
+    <div class="selectedInfoArtist selected"><span class="spanInfo">artist name: </span>{{iTunesService.songSelected.artistName}}</div>
+    <div class="selectedInfoCollection selected"><span class="spanInfo">collection name: </span>{{iTunesService.songSelected.collectionName}}</div>
+    <div class="selectedInfoSong selected"><span class="spanInfo">song name: </span>{{iTunesService.songSelected.trackName}}</div>
+  </div>
+
+</div>
+<ng-template #enjoySong class="footerAnimation">
+
+</ng-template>

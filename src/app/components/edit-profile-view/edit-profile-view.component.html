@@ -1,0 +1,73 @@
+pristine? {{formGroup.pristine}}<br>
+valid: {{formGroup.valid | json}}<br>
+errors? {{formGroup.errors| json}}<br>
+<form class="form-warp" [formGroup]="formGroup">
+
+  <div class="label-cols">
+    <div class="label">Name:</div>
+    <div class="label">Age:</div>
+  </div>
+  <div class="input-cols">
+    (has to include boris)
+    <input class="input-col" type="text" formControlName="name">
+    <div class="form-error-div"
+         *ngIf="formGroup.controls['name'].errors">
+      <span
+        *ngIf="formGroup.controls['name'].errors.minlength">
+
+              Input should be {{ formGroup.controls['name'].errors.minlength.requiredLength}} character longs, but
+      it is only {{formGroup.controls['name'].errors.minlength.actualLength}}
+      </span>
+      <span
+        *ngIf="formGroup.controls['name'].pristine && formGroup.controls['name'].errors.required">
+      </span>
+      <span
+        *ngIf="formGroup.controls['name'].pristine && formGroup.controls['name'].errors.noWords">
+        {{formGroup.controls['name'].errors.noWords}}
+      </span>
+
+
+    </div>
+
+    <input class="input-col" type="number" formControlName="age">
+    <div class="form-error-div"
+         *ngIf="formGroup.controls['age'].errors">
+      <span *ngIf="formGroup.controls['age'].errors.min">
+      Age should be minimum {{formGroup.controls['age'].errors.min.min}}, but it is
+        {{formGroup.controls['age'].errors.min.actual}}
+        </span>
+      <span *ngIf="formGroup.controls['age'].errors.max">
+      Age should be minimum {{formGroup.controls['age'].errors.max.max}}, but it is
+        {{formGroup.controls['age'].errors.max.actual}}
+        </span>
+    </div>
+  </div>
+
+
+  <br>
+  <div class="input-col">
+    Address:
+    <form formGroupName="address">
+      street:
+      <input formControlName="street" placeholder="street">
+      city:
+      <input formControlName="city" placeholder="city">
+    </form>
+
+  </div>
+  <button type="submit"
+          [disabled]=" !formGroup.valid "
+          (click)="onSave()">Save
+  </button>
+</form>
+
+<br>
+
+
+<!--<div class="circle"-->
+<!--     [ngStyle]="{-->
+<!--     backgroundColor:color,-->
+<!--     borderRadius:borderRadius-->
+
+<!--     }"-->
+<!--&gt;</div>-->

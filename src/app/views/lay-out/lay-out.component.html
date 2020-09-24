@@ -1,0 +1,49 @@
+<div class="app-wrap">
+  <header>iTunes App
+    <br>
+
+  </header>
+  <div class="main">
+    <div class="menu">
+      <div class="Logo">
+        <app-logo></app-logo>
+      </div>
+      <div class="searchArea">
+        <input class="searchInput" [(ngModel)]="searchSong" (keyup)="iTunesService.saveSongs(searchSong)">
+        <button class="search" (click)="iTunesService.saveSongs(searchSong)">search</button>
+      </div>
+      <div class="buttonTrey">
+        <div class="buttonTreyColor">
+          <button [routerLink]="'profile'" class="menuButton">
+            Edit User Profile
+          </button>
+          <button [routerLink]="'songs'" class="menuButton">
+            Songs
+          </button>
+<!--          <img src="./src/png/songBackgraund.png" width="200px" height="150px"/>-->
+          <button [routerLink]="'favorite'" class="menuButton">
+            Favorite
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div class="content" [ngStyle]="{'backgroundImage': 'url(assets/png/fonContent.png)',
+       'background-size': 'cover'  }">
+
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+
+  <footer class="footer" >
+    <div class="footerBack" [ngStyle]="{'backgroundImage': 'url(assets/png/footerBackgraund.png)',
+       'background-size': 'cover'  }">
+      <app-footer></app-footer>
+    </div>
+
+  </footer>
+</div>
